@@ -8,6 +8,7 @@ public class Main {
         HashSet dataBase = new HashSet();
         ReadInData readSet = new ReadInData(dataBase, "KDD.dat");
         KDTree kdTree = new KDTree(42);
+        Formal formalUnit = new Formal(dataBase);
         kdTree.init(dataBase);
     }
 }

@@ -17,4 +17,5 @@ public class KDTree {
     public void init(HashSet data) {
         pointSet = data;
     }
+
 }
