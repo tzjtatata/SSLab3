@@ -10,7 +10,10 @@ public class Data {
     public Data(int dimension) {
         attr = new double[dimension];
     }
-
+    public Data(Data data) {
+        attr = data.getAttr().clone();
+        label = data.getLabel();
+    }
     public double[] getAttr() {
         return attr;
     }
