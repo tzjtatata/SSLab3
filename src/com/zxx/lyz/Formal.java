@@ -39,6 +39,12 @@ public class Formal {
     public ArrayList<Data> getResult() {
         return dataBase;
     }
+    public ArrayList<Data> formalWithOldParams(ArrayList<Data> dataBase) {
+        ArrayList<Data> formalizedResult = new ArrayList<>();
+        for(Data data: dataBase)
+            formalizedResult.add(formalizeData(data));
+        return formalizedResult;
+    }
     public Data formalizeData(Data data) {
         Data newData = new Data(data);
         for(int i = 0; i < attributeNumber; i++)
