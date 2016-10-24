@@ -1,9 +1,7 @@
 package com.zxx.lyz;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
 /**
  * Created by 李沅泽 on 2016/10/24.
