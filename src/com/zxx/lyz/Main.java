@@ -9,6 +9,5 @@ public class Main {
         ReadInData readSet = new ReadInData(dataBase, "KDD.dat");
         KDTree kdTree = new KDTree(42);
         Formal formalUnit = new Formal(dataBase);
-        kdTree.init(dataBase);
     }
 }
