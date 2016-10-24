@@ -25,8 +25,8 @@ public class KDTree {
     public void buildTree(Node currentNode) {
         if (currentNode.LargeOrNot()) {
             currentNode.devide();
-            if (currentNode.leftChild != null) buildTree(currentNode.leftChild);
-            if (currentNode.leftChild != null) buildTree(currentNode.rightChild);
+            buildTree(currentNode.leftChild);
+            buildTree(currentNode.rightChild);
         } else currentNode.leafOrNot = true;
     }
 

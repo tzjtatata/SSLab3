@@ -22,6 +22,14 @@ public class Node {
     private ArrayList<Data> points;
     private final int MAXVOLUMNOFSAMPLES = 100;
     private final int MAXVOLUMN = 10;
+    private final double SAMPLINGRATES = 0.001;
+    private int volumn;
+    private double midPointOfDevidedDimension;
+    private int DevidedDimensionOrder;
+    private final int DIMENSION;
+    public Node leftChild;
+    public Node rightChild;
+    public boolean leafOrNot = false;
 
     public double getMidPointOfDevidedDimension() {
         return midPointOfDevidedDimension;
@@ -42,21 +50,13 @@ public class Node {
     public void setDevidedDimensionOrder(int devidedDimensionOrder) {
         DevidedDimensionOrder = devidedDimensionOrder;
     }
-
-    private final double SAMPLINGRATES = 0.001;
-    private int volumn;
-    private double midPointOfDevidedDimension;
-    private int DevidedDimensionOrder;
-    private final int DIMENSION;
-    public Node leftChild;
-    public Node rightChild;
-    public boolean leafOrNot = false;
-
     public Node(ArrayList<Data> dataSlide, int dimension) {
         points = dataSlide;
         volumn = dataSlide.size();
         DIMENSION = dimension;
-        findDevideDimension();
+        if (LargeOrNot()) {
+            findDevideDimension();
+        }
     }
     /*
         This function is build to find the dimension
@@ -165,8 +165,8 @@ public class Node {
                 leftData.add(point);
             } else rightData.add(point);
         }
-        if (leftData.size() != 0) leftChild = new Node(leftData, DIMENSION);
-        if (rightData.size() != 0) rightChild = new Node(rightData, DIMENSION);
+        leftChild = new Node(leftData, DIMENSION);
+        rightChild = new Node(rightData, DIMENSION);
         points = null;   // I try to save some memory, but I am not sure that this methods can work.
     }
 }
