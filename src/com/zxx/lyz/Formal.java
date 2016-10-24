@@ -10,8 +10,12 @@ public class Formal {
     public Formal(ArrayList<Data> dataBase) {
         this.dataBase = (ArrayList<Data>)dataBase.clone();
         attributeNumber = dataBase.get(0).getAttr().length;
-        coefficientArray = new ArrayList<>(attributeNumber);
-        biasArray = new ArrayList<>(attributeNumber);
+        coefficientArray = new ArrayList<>();
+        biasArray = new ArrayList<>();
+        for (int i = 0; i < attributeNumber; i++) {
+            coefficientArray.add(0.0d);
+            biasArray.add(0.0d);
+        }
         for(int i = 0; i < attributeNumber; i++) {
             formalizeIthDimension(i);
         }
