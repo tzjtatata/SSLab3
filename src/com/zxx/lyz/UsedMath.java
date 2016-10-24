@@ -1,6 +1,9 @@
 package com.zxx.lyz;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Created by 李沅泽 on 2016/10/24.
@@ -25,5 +28,24 @@ public class UsedMath {
 
     public static double sqr(double a) {
         return a * a;
+    }
+
+    public static double[] getMinMedianAndMaxAtIthDimension(ArrayList<Data> samples, int i) {
+        ArrayList<Double> ithData = new ArrayList<>();
+        for(Data sample : samples)
+            ithData.add(sample.getAttr()[i]);
+        Collections.sort(ithData);
+        int size = ithData.size();
+        double[] result = new double[3];
+        if (size % 2 == 1)
+            result[1] = ithData.get((size-1)/2);
+        else {
+            double sum = ithData.get(size/2);
+            sum += ithData.get(size/2-1);
+            result[1] =  sum/2;
+        }
+        result[0] = ithData.get(0);
+        result[2] = ithData.get(size-1);
+        return result;
     }
 }
