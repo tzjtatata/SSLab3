@@ -35,6 +35,10 @@ public class Formal {
         double max = minMedianAndMax[2];
         double coefficient = (newMax - newMin) / (max - min);
         double bias = newMin - min * coefficient;
+        if (Math.abs(max-min) < 1e-6) {
+            coefficient = 0;
+            bias = 0.5;
+        }
         coefficientArray.set(i, coefficient);
         biasArray.set(i, bias);
         for (int k = 0; k < dataBase.size(); k++)

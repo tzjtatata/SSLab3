@@ -6,7 +6,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        ReadInData readSet = new ReadInData("H:/KDD.dat");
+        ReadInData readSet = new ReadInData("G:/KDD.dat");
         ArrayList<Data> dataBase = readSet.readTrainingData(1000);
         Formal formalUnit = new Formal(dataBase);
         ArrayList<Data> formalizedDatabase = formalUnit.getResult();
