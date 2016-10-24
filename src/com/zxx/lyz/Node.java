@@ -20,21 +20,26 @@ public class Node {
         and give the accurate answer to devide.
      */
     private ArrayList<Data> points;
-    private final int MAXVOLUMN = 100;
+    private final int MAXVOLUMNOFSAMPLES = 100;
+    private final int MAXVOLUMN = 10;
     private final double SAMPLINGRATES = 0.001;
     private int volumn;
-    private double midPointOfDividedDimension;
-    private double dividedDimensionOrder;
+    private double midPointOfDevidedDimension;
+    private int DevidedDimensionOrder;
     private final int DIMENSION;
+    public Node leftChild;
+    public Node rightChild;
+    public boolean leafOrNot = false;
 
     public Node(ArrayList<Data> dataSlide, int dimension) {
         points = dataSlide;
         volumn = dataSlide.size();
         DIMENSION = dimension;
+        findDevideDimension();
     }
     /*
         This function is build to find the dimension
-        which are most extensional. And Divided will
+        which are most extensional. And Devided will
         apply in this dimension in this point of
         KD-Tree.
 
@@ -43,20 +48,20 @@ public class Node {
 
         @param
      */
-    public int findDiviceDimension() {
-        if (volumn*SAMPLINGRATES > MAXVOLUMN) {
-            return findDiviceDimensionWithSampling();
+    public int findDevideDimension() {
+        if (volumn * SAMPLINGRATES > MAXVOLUMNOFSAMPLES) {
+            return findDevideDimensionWithSampling();
         }
         else {
-            return findDiviceDimensionWithStatics();
+            return findDevideDimensionWithStatics();
         }
     }
 
-    public int findDiviceDimensionWithStatics() {
-        return findDiviceDimensionByGap(points);
+    public int findDevideDimensionWithStatics() {
+        return findDevideDimensionByGap(points);
     }
 
-    public int findDiviceDimensionWithSampling() {
+    public int findDevideDimensionWithSampling() {
         Random randomUnit = new Random(11403410520L);
         HashSet<Integer> orders = new HashSet<Integer>();
         ArrayList<Data> samples = new ArrayList<Data>();
@@ -68,10 +73,10 @@ public class Node {
         for (Integer i : orders) {
             samples.add(points.get(i.intValue()));
         }
-        return findDiviceDimensionByVariance(samples);
+        return findDevideDimensionByVariance(samples);
     }
 
-    public int findDiviceDimensionByGap(ArrayList<Data> samples) {
+    public int findDevideDimensionByGap(ArrayList<Data> samples) {
         int sampleSize = samples.size();
         double[] midpoints = new double[DIMENSION];
         double[] max = new double[DIMENSION];
@@ -99,12 +104,12 @@ public class Node {
                 record = i;
             }
         }
-        midPointOfDividedDimension = maxMidPoint;
-        dividedDimensionOrder = record;
+        midPointOfDevidedDimension = maxMidPoint;
+        DevidedDimensionOrder = record;
         return record;
     }
 
-    public int findDiviceDimensionByVariance(ArrayList<Data> samples) {
+    public int findDevideDimensionByVariance(ArrayList<Data> samples) {
         double maxVariance = 0.0;
         int dimensionOrder = 0;
         double max = 0;
@@ -130,9 +135,26 @@ public class Node {
                 min = Temp;
             }
         }
-        midPointOfDividedDimension = (max - min) / 2;
-        dividedDimensionOrder = dimensionOrder;
+        midPointOfDevidedDimension = (max - min) / 2;
+        DevidedDimensionOrder = dimensionOrder;
         return dimensionOrder;
 
+    }
+
+    public boolean LargeOrNot() {
+        return volumn > MAXVOLUMN;
+    }
+
+    public void devide() {
+        ArrayList<Data> leftData = new ArrayList<Data>();
+        ArrayList<Data> rightData = new ArrayList<Data>();
+        for (Data point : points) {
+            if (point.getAttr()[DevidedDimensionOrder] < midPointOfDevidedDimension) {
+                leftData.add(point);
+            } else rightData.add(point);
+        }
+        leftChild = new Node(leftData, DIMENSION);
+        rightChild = new Node(rightData, DIMENSION);
+        points = null;   // I try to save some memory, but I am not sure that this methods can work.
     }
 }
