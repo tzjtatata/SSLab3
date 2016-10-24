@@ -22,6 +22,23 @@ public class Node {
     private ArrayList<Data> points;
     private final int MAXVOLUMNOFSAMPLES = 100;
     private final int MAXVOLUMN = 10;
+
+    public double getMidPointOfDevidedDimension() {
+        return midPointOfDevidedDimension;
+    }
+
+    public void setMidPointOfDevidedDimension(double midPointOfDevidedDimension) {
+        this.midPointOfDevidedDimension = midPointOfDevidedDimension;
+    }
+
+    public int getDevidedDimensionOrder() {
+        return DevidedDimensionOrder;
+    }
+
+    public void setDevidedDimensionOrder(int devidedDimensionOrder) {
+        DevidedDimensionOrder = devidedDimensionOrder;
+    }
+
     private final double SAMPLINGRATES = 0.001;
     private int volumn;
     private double midPointOfDevidedDimension;

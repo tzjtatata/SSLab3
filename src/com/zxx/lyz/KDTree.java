@@ -31,7 +31,15 @@ public class KDTree {
     }
 
     public Node search(Data testPoint) {
-
+        Node currentNode = root;
+        while (!currentNode.leafOrNot) {
+            if (testPoint.getAttr()[currentNode.getDevidedDimensionOrder()] < currentNode.getMidPointOfDevidedDimension()) {
+                currentNode = currentNode.leftChild;
+            } else {
+                currentNode = currentNode.rightChild;
+            }
+        }
+        return currentNode;
     }
 
 }
