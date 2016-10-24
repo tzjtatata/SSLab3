@@ -5,8 +5,9 @@ import java.util.ArrayList;
 public class Main {
 
     public static void main(String[] args) {
-        ArrayList<Data> dataBase = new ArrayList<>();
-        ReadInData readSet = new ReadInData(dataBase, "KDD.dat");
+
+        ReadInData readSet = new ReadInData("KDD.dat");
+        ArrayList<Data> dataBase = readSet.readTrainingData(1000);
         Formal formalUnit = new Formal(dataBase);
         ArrayList<Data> formalizedDatabase = formalUnit.getResult();
         KDTree kdTree = new KDTree(42, formalizedDatabase);

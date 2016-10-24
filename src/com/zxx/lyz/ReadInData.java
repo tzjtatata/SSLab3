@@ -7,7 +7,23 @@ import java.util.ArrayList;
  */
 public class ReadInData {
 
-    public ReadInData(ArrayList<Data> dataSet, String fileRoot) {
+    public ReadInData(String fileRoot) {
         //TO DO read data from file system
     }
+
+    public ArrayList<Data> readTrainingData(int dataNumber) {
+
+        return null;
+    }
+
+    public ArrayList<Data> readTestingData(int dataNumber) {
+
+        return null;
+    }
+
+    private Data getDataFromLine(String line) {
+
+        return null;
+    }
+
 }
