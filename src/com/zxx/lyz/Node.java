@@ -121,7 +121,7 @@ public class Node {
                 record = i;
             }
         }
-        midPointOfDevidedDimension = maxMidPoint;
+        midPointOfDevidedDimension = UsedMath.getMinMedianAndMaxAtIthDimension(points, record)[1];
         DevidedDimensionOrder = record;
         return record;
     }
@@ -143,16 +143,7 @@ public class Node {
                 dimensionOrder = i;
             }
         }
-        for (int i = 0; i < volumn; i++) {
-            double Temp = samples.get(i).getAttr()[dimensionOrder];
-            if (Temp > max) {
-                max = Temp;
-            }
-            if (Temp < min) {
-                min = Temp;
-            }
-        }
-        midPointOfDevidedDimension = (max - min) / 2;
+        midPointOfDevidedDimension = UsedMath.getMinMedianAndMaxAtIthDimension(points, dimensionOrder)[1];
         DevidedDimensionOrder = dimensionOrder;
         return dimensionOrder;
 

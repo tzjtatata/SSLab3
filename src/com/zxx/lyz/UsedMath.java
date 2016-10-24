@@ -1,9 +1,7 @@
 package com.zxx.lyz;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
 /**
  * Created by 李沅泽 on 2016/10/24.
@@ -47,5 +45,15 @@ public class UsedMath {
         result[0] = ithData.get(0);
         result[2] = ithData.get(size-1);
         return result;
+    }
+
+    public static double calEuclideanMetric(Data APoint, Data BPoint) {
+        int dimension = APoint.getAttr().length;
+        double sum = 0;
+        for (int i = 0; i < dimension; i++) {
+            double Temp = sqr(APoint.getAttr()[i] - BPoint.getAttr()[i]);
+            sum += Temp;
+        }
+        return Math.sqrt(sum);
     }
 }
