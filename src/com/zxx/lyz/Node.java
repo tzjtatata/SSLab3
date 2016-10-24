@@ -165,8 +165,8 @@ public class Node {
                 leftData.add(point);
             } else rightData.add(point);
         }
-        leftChild = new Node(leftData, DIMENSION);
-        rightChild = new Node(rightData, DIMENSION);
+        if (leftData.size() != 0) leftChild = new Node(leftData, DIMENSION);
+        if (rightData.size() != 0) rightChild = new Node(rightData, DIMENSION);
         points = null;   // I try to save some memory, but I am not sure that this methods can work.
     }
 }
