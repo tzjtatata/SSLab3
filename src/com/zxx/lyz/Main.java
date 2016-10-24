@@ -1,11 +1,11 @@
 package com.zxx.lyz;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 
 public class Main {
 
     public static void main(String[] args) {
-        HashSet dataBase = new HashSet();
+        ArrayList<Data> dataBase = new ArrayList<>();
         ReadInData readSet = new ReadInData(dataBase, "KDD.dat");
         KDTree kdTree = new KDTree(42);
         Formal formalUnit = new Formal(dataBase);
