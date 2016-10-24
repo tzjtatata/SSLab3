@@ -1,6 +1,8 @@
 package com.zxx.lyz;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Random;
 
@@ -125,7 +127,6 @@ public class Node {
                 record = i;
             }
         }
-        midPointOfDevidedDimension = UsedMath.getMinMedianAndMaxAtIthDimension(points, record)[1];
         DevidedDimensionOrder = record;
         return record;
     }
@@ -160,13 +161,40 @@ public class Node {
     public void devide() {
         ArrayList<Data> leftData = new ArrayList<Data>();
         ArrayList<Data> rightData = new ArrayList<Data>();
-        for (Data point : points) {
-            if (point.getAttr()[DevidedDimensionOrder] < midPointOfDevidedDimension) {
-                leftData.add(point);
-            } else rightData.add(point);
+        points = sortByIthDimension(points, DevidedDimensionOrder);
+        for(int i = 0; i < points.size(); i++) {
+            if (i < points.size()/2)
+                leftData.add(points.get(i));
+            else
+                rightData.add(points.get(i));
         }
         leftChild = new Node(leftData, DIMENSION);
         rightChild = new Node(rightData, DIMENSION);
         points = null;   // I try to save some memory, but I am not sure that this methods can work.
+    }
+    private ArrayList<Data> sortByIthDimension(ArrayList<Data> points, int i) {
+        int pointNumber = points.size();
+        Data[] result = new Data[pointNumber];
+        for(int k = 0; k < pointNumber; k++)
+            result[k] = new Data(points.get(k));
+        double[] ithData = new double[points.size()];
+        for(int k = 0; k < points.size(); k++)
+            ithData[k] = points.get(k).getAttr()[i];
+        boolean flag = false;
+        do {
+            flag = false;
+            for(int k = 0; k < pointNumber-1; k++) {
+                if (ithData[k] > ithData[k+1]) {
+                    flag = true;
+                    double temp = ithData[k+1];
+                    Data tempData = result[k+1];
+                    ithData[k+1] = ithData[k];
+                    result[k+1] = result[k];
+                    ithData[k] = temp;
+                    result[k] = tempData;
+                }
+            }
+        }while (flag == true);
+        return new ArrayList<Data>(Arrays.asList(result));     //TODO
     }
 }
