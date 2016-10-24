@@ -27,6 +27,10 @@ public class Node {
         return midPointOfDevidedDimension;
     }
 
+    public ArrayList<Data> getPoints() {
+        return points;
+    }
+
     public void setMidPointOfDevidedDimension(double midPointOfDevidedDimension) {
         this.midPointOfDevidedDimension = midPointOfDevidedDimension;
     }
