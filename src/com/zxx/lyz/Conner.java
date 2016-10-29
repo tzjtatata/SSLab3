@@ -22,11 +22,14 @@ public class Conner {
         int volumn = testSet.size();
         for (int i = 0; i < volumn; i++) {
             double basis = calculateBasis(i);
-            if (basis < Boundary && testSet.get(i).getLabel() == 1) {
-                count += 1;
+            if (basis < Boundary) {
+                if (testSet.get(i).getLabel() == 1) count += 1;
+            }
+            else {
+                if (testSet.get(i).getLabel() == 0) count += 1;
             }
         }
-        accuracy = count / volumn;
+        accuracy = count*1.0 / volumn;
         return accuracy;
     }
 

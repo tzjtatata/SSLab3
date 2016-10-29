@@ -80,6 +80,8 @@ public class ReadInData {
         data.setAttr(attriArray);
         if (fragments[41].equals("normal."))
             data.setLabel(1);
+        else
+            data.setLabel(0);
         return data;
     }
     int hash(String s) {

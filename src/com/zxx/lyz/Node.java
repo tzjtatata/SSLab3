@@ -195,6 +195,6 @@ public class Node {
                 }
             }
         }while (flag == true);
-        return new ArrayList<Data>(Arrays.asList(result));     //TODO
+        return new ArrayList<Data>(Arrays.asList(result));
     }
 }
