@@ -18,17 +18,23 @@ public class Conner {
 
     public double test() {
         int count = 0;
+        int lost = 0;
+        int fail = 0;
         double accuracy = 0;
         int volumn = testSet.size();
         for (int i = 0; i < volumn; i++) {
             double basis = calculateBasis(i);
             if (basis < Boundary) {
                 if (testSet.get(i).getLabel() == 1) count += 1;
+                else lost++;
             }
             else {
                 if (testSet.get(i).getLabel() == 0) count += 1;
+                else fail++;
             }
         }
+        System.out.println(lost * 1.0 / volumn);
+        System.out.println(fail * 1.0 / volumn);
         accuracy = count*1.0 / volumn;
         return accuracy;
     }
